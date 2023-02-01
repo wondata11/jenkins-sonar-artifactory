@@ -12,6 +12,12 @@ pipeline {
                 sh 'java --version'
             }
         }
+        // This is a test stage 
+        stage(' unit test'){
+           steps {
+              sh 'mvn test'
+           }
+        }
         stage('Build Maven Job'){
            steps {
               sh 'mvn clean install'
