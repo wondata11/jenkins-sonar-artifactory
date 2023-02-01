@@ -83,7 +83,4 @@ trivy image dockerized-java-app:${DOCKER_IMAGE} > $WORKSPACE/trivy-image-scan/tr
 whoami 
   '''
 }
-
-//sh 'trivy image dockerized-java-app:${DOCKER_IMAGE} > $WORKSPACE/trivy-image-scan/trivy-image-scan-${DOCKER_IMAGE}.txt'
-
  
