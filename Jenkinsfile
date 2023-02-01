@@ -46,8 +46,8 @@ pipeline {
             // docker login java-web-app-docker.jfrog.io -u admin -p ${JFROG_PASSWORD}
             // docker push dockerized-java-app:${DOCKER_IMAGE}
             // '''
-        }//
-     }//
+       // }
+    // }
      stage('Cleaning up DockerImage'){
             steps{
                 sh 'docker rmi dockerized-java-app:${DOCKER_IMAGE}'
@@ -71,7 +71,7 @@ pipeline {
          steps {
             echo 'BASIC WHEN - Master Branch!'
          }
-      }   
+      }
   }
 }
 
