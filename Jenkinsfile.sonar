@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Push to Artifactory') {
             steps {
-                withCredentials([string(credentialsId: 'artifactory-api-token', variable: 'ARTIFACTORY_API_TOKEN')]) {
+                withCredentials([string(credentialsId: 'jboss-access-token', variable: 'ARTIFACTORY_API_TOKEN')]) {
                     sh 'curl -u ${ARTIFACTORY_API_TOKEN} -X PUT "http://lab.cloudsheger.com:8082/artifactory/java-web-app/demo/${env.BUILD_NUMBER}/demo-${env.BUILD_NUMBER}.jar" -T target/demo-0.0.1*.jar'
                 }
             }
