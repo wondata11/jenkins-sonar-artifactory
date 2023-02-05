@@ -5,9 +5,6 @@ pipeline {
         JFROG_PASSWORD = credentials('jfrog-password')
     }
     stages {
-        stage('SCM') {
-         checkout scm
-        }
         stage('Build') {
             steps {
                 sh 'mvn clean install'
