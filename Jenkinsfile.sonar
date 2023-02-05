@@ -31,13 +31,6 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            steps {
-                withMaven(maven: 'Maven 3') {
-                    sh "mvn deploy -Dmaven.test.skip=true -DaltDeploymentRepository=snapshot-repo::default::http://lab.cloudsheger.com:8082/artifactory/java-web-app/"
-                }
-            }
-        }
         stage('Push to Artifactory') {
             steps {
                 withCredentials([string(credentialsId: 'artifactory-api-token', variable: 'ARTIFACTORY_API_TOKEN')]) {
@@ -62,3 +55,14 @@ def custom_msg()
   def JENKINS_LOG= " FAILED: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
   return JENKINS_LOG
 }
+
+/*
+stage('Deploy') {
+            steps {
+                withMaven(maven: 'Maven 3') {
+                    sh "mvn deploy -Dmaven.test.skip=true -DaltDeploymentRepository=snapshot-repo::default::http://lab.cloudsheger.com:8082/artifactory/java-web-app/"
+                }
+            }
+        }
+*/        
+
