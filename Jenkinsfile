@@ -14,7 +14,7 @@ pipeline {
         }
         stage('SonarQube analysis') {
             steps {
-                withSonarQubeEnv() {
+                withSonarQubeEnv('SonarScanner') {
                     sh "mvn sonar:sonar \
                         -Dsonar.host.url=http://lab.cloudsheger.com:9000 \
                         -Dsonar.projectKey=CloudSheger-Java-app \
