@@ -14,13 +14,11 @@ pipeline {
         }
         stage('SonarQube analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv('SonarScanner') {
                     sh "mvn sonar:sonar \
                         -Dsonar.host.url=http://lab.cloudsheger.com:9000 \
-                        -Dsonar.projectKey=CloudSheger-Java-app \
-                        -Dsonar.login=${SONAR_LOGIN_TOKEN} \
-                        -Dsonar.password=${SONAR_PASSWORD} \
-                        -Dsonar.projectName='CloudSheger-Java-app' \
+                        -Dsonar.projectKey=demo \
+                        -Dsonar.login=${SONAR_LOGIN_TOKEN} \                        -Dsonar.projectName='demo' \
                         -Dsonar.projectVersion=1.0.0 \
                         -Dsonar.java.binaries=target/classes"
                 }
@@ -37,7 +35,7 @@ pipeline {
 
 def custom_msg()
 {
-  def JENKINS_URL= "http://54.167.197.172:8080"
+  def JENKINS_URL= "http://lab.cloudsheger.com:8080"
   def JOB_NAME = env.JOB_NAME
   def BUILD_ID= env.BUILD_ID
   def JENKINS_LOG= " FAILED: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
