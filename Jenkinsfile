@@ -17,10 +17,10 @@ pipeline {
                 withSonarQubeEnv('SonarScanner') {
                     sh "mvn sonar:sonar \
                         -Dsonar.host.url=http://lab.cloudsheger.com:9000 \
-                        -Dsonar.projectKey=CloudSheger-Java-app \
+                        -Dsonar.projectKey=demo \
                         -Dsonar.login=${SONAR_LOGIN_TOKEN} \
                         -Dsonar.password=${SONAR_PASSWORD} \
-                        -Dsonar.projectName='CloudSheger-Java-app' \
+                        -Dsonar.projectName='demo' \
                         -Dsonar.projectVersion=1.0.0 \
                         -Dsonar.java.binaries=target/classes"
                 }
