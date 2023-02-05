@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        ARTIFACTORY_API_TOKEN = credentials('artifactory-access-token')
+        ARTIFACTORY_API_TOKEN = credentials('artifactory-access-token2')
         JFROG_PASSWORD = credentials('jfrog-password')
-        SONAR_LOGIN_TOKEN = credentials('sonarqube-login-token2')
+        SONAR_LOGIN_TOKEN = credentials('sonarqube-login-token')
         SONAR_PASSWORD = credentials('sonarqube-password')
     }
 
