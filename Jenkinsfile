@@ -6,7 +6,13 @@ pipeline {
         SONAR_LOGIN_TOKEN = credentials('sonarqube-login-token')
         SONAR_PASSWORD = credentials('sonarqube-password')
     }
+
     stages {
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn clean install'
@@ -22,6 +28,20 @@ pipeline {
                         -Dsonar.projectName='demo' \
                         -Dsonar.projectVersion=1.0.0 \
                         -Dsonar.java.binaries=target/classes"
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                withMaven(maven: 'Maven 3') {
+                    sh "mvn deploy -Dmaven.test.skip=true -DaltDeploymentRepository=snapshot-repo::default::http://lab.cloudsheger.com:8082/artifactory/java-web-app/"
+                }
+            }
+        }
+        stage('Push to Artifactory') {
+            steps {
+                withCredentials([string(credentialsId: 'artifactory-api-token', variable: 'ARTIFACTORY_API_TOKEN')]) {
+                    sh 'curl -u ${ARTIFACTORY_API_TOKEN} -X PUT "http://lab.cloudsheger.com:8082/artifactory/java-web-app/demo/${env.BUILD_NUMBER}/demo-${env.BUILD_NUMBER}.jar" -T target/demo-0.0.1*.jar'
                 }
             }
         }
