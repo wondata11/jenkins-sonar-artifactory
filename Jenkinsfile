@@ -3,7 +3,7 @@ pipeline {
     environment {
         ARTIFACTORY_API_TOKEN = credentials('artifactory-access-token')
         JFROG_PASSWORD = credentials('jfrog-password')
-        SONAR_LOGIN_TOKEN = credentials('sonarqube-login-token')
+        SONAR_LOGIN_TOKEN = credentials('sonarqube-login-token2')
         SONAR_PASSWORD = credentials('sonarqube-password')
     }
 
