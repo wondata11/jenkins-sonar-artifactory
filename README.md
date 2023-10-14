@@ -1,3 +1,14 @@
+# How to run docker compose 
+```
+docker-compose up -d
+```
+
+# How to down docker containers
+
+```
+docker-compose down
+```
+
 # java-web-app
 
 ### Artifactory password
