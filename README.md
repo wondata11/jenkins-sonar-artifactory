@@ -11,15 +11,15 @@ docker-compose down
 
 # java-web-app
 
-### Artifactory password
+### Artifactory default username and password
 ```
 admin:password
 ```
-### Jenkins password
+### Jenkins password default username and password
 ```
 docker logs -f <container-id>
 ```
-## SonarQube server 
+## SonarQube server default username and password
 ```
 admin:admin
 ```
